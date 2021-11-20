@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "50"
+  name: ingress-v2
+spec:
+  rules:
+  - host: canary.test.com
+    http:
+      paths:
+      - backend:
+          serviceName: service-v2
+          servicePort: 8080
+        path: /
